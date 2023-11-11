@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import LeftNav from "./_leftNav/page";
+import RightNav from "./_rightNav/page";
+import Header from "./_header/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +16,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={` ${inter} text-white bg-black`}>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <div className="flex-1 flex flex-col sm:flex-row">
+            <main className="flex-1 ">{children}</main>
+            <LeftNav />
+            <RightNav />
+          </div>
+
+          <footer className="italic opacity-10 text-center">
+            By using this site you are OK with selling your soul.
+          </footer>
+        </div>
+      </body>
     </html>
   );
 }
