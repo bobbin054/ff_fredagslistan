@@ -21,18 +21,23 @@ export default function Home() {
           <h2>Already picked:</h2>
           <ul>
             {alreadyPicked.map((item) => (
-              <li>{item}</li>
+              <li key={item}>{item}</li>
             ))}
           </ul>
           <div>
-            <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={randomize}>Randomize </button>
+            <button
+              className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+              onClick={randomize}
+            >
+              Randomize{" "}
+            </button>
           </div>
         </div>
         <div>
           <h2>Pickable</h2>
           <ul>
             {pickable.map((item) => (
-              <li>{item}</li>
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
