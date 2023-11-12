@@ -1,9 +1,9 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 
 export default function LeftNav() {
   return (
-    <nav className="order-first sm:w-32 flex pl-2">
+    <nav className="order-first flex pl-2 sm:w-32">
       <ul>
         <li>
           <Link href={"/"}>Home</Link>
