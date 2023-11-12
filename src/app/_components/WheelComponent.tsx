@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react'
 const WheelComponent = ({
   segments,
   segColors,
-  winningSegment,
-  onFinished,
+  winningSegment = null,
+  onFinished = (winner: string) => {},
   primaryColor = 'black',
   contrastColor = 'white',
   buttonText = 'Spin',
