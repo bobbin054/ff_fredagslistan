@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "Logging Environment Variables..."
           env 
-          npm deploy
+          npm run deploy
           echo "ls -la"
           ls -la
 
