@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="mx-10 flex justify-between">
+      <div className={`mx-10 flex justify-between`}>
         <div>
           <h2>Already picked:</h2>
           <ul>
@@ -43,9 +43,9 @@ export default function Home() {
 
             <div
               style={{ transition: "all 5s ease-in-out" }}
-              className="flex animate-pulse flex-row"
+              className="flex flex-row"
             >
-              <span className="uppercase">{pickedItem}</span>
+              <span className={`uppercase`}>{pickedItem}</span>
             </div>
           </div>
         </div>
