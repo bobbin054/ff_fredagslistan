@@ -1,41 +1,72 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import WheelComponent from "../_components/WheelComponent";
 
 export default function About() {
-  const segments = ["1", "2", "3", "4"];
-  const segColors = [
-    "#EE4040",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-    "#F0CF50",
-    "#815CD1",
-    "#3DA5E0",
-    "#34A24F",
-    "#F9AA1F",
-    "#EC3F3F",
-    "#FF9000",
-  ];
-  const onFinished = (winner: string) => {
-    console.log(winner);
+  const [pickedNames, setPickedNames] = useState<string[]>([]);
+  const [pickableNames, setPickableNames] = useState<string[]>([
+    "1",
+    "2",
+    "3",
+    "4",
+  ]);
+  const [key, setKey] = useState(1);
+  const [firstSpin, setFirstSpin] = useState(true);
+
+  const onFinished = (pickedName: string) => {
+    console.log("onFinished firstSpin", String(firstSpin));
+
+    if (!firstSpin) {
+      console.log("onFinished !firstSpin");
+      setKey((prevKey) => +prevKey + 1);
+    }
+    setFirstSpin(false);
+
+    setPickableNames((prevPickedNames) => {
+      const newPickableNames = prevPickedNames.filter(
+        (item) => item !== pickedName,
+      );
+      return [...newPickableNames];
+    });
+
+    setPickedNames((prevPickedNames) => [...prevPickedNames, pickedName]);
   };
+
   return (
-    <WheelComponent
-      segments={segments}
-      segColors={segColors}
-      onFinished={(winner) => onFinished(winner)}
-      primaryColor="gold"
-      contrastColor="black"
-      buttonText="Spin"
-      isOnlyOnce={false}
-      size={200}
-      upDuration={100}
-      downDuration={500}
-    />
+    <>
+      <WheelComponent
+        key={key}
+        segments={pickableNames}
+        segColors={["#34A24F"]}
+        onFinished={(winner) => onFinished(winner)}
+        primaryColor="white"
+        contrastColor="black"
+        buttonText="Spin"
+        isOnlyOnce={false}
+        size={200}
+        upDuration={100}
+        downDuration={500}
+      />
+      <p> first spin: {String(firstSpin)}</p>
+      <div className="flex flex-row gap-5">
+        <div>
+          Pickable names:
+          <ul>
+            {pickableNames.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          Picked names:
+          <ul>
+            {pickedNames.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </>
   );
 }
