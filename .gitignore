@@ -5,7 +5,9 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-.package-lock.json
+
+# package-lock.json is an auto-generated file for npm
+package-lock.json
 
 # testing
 /coverage
