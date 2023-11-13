@@ -5,7 +5,7 @@ const WheelComponent = ({
   segments,
   segColors,
   winningSegment = null,
-  onFinished = (winner: string) => {},
+  onFinished,
   primaryColor = "black",
   contrastColor = "white",
   buttonText = "Spin",
