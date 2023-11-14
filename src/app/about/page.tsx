@@ -14,13 +14,16 @@ export default function About() {
   const [firstSpin, setFirstSpin] = useState(true);
 
   const onFinished = (pickedName: string) => {
-    console.log("onFinished firstSpin", String(firstSpin));
-
-    if (!firstSpin) {
-      console.log("onFinished !firstSpin");
-      setKey((prevKey) => +prevKey + 1);
-    }
-    setFirstSpin(false);
+    // setFirstSpin((prevFirstSpin) => {
+    //   console.log("onFinished firstSpin", String(prevFirstSpin));
+  
+    //   if (!prevFirstSpin) {
+    //     setKey((prevKey) => prevKey + 1);
+    //     console.log("onFinished !firstSpin");
+    //   }
+  
+    //   return false; // set the new value of firstSpin
+    // });
 
     setPickableNames((prevPickedNames) => {
       const newPickableNames = prevPickedNames.filter(
@@ -36,6 +39,7 @@ export default function About() {
     <>
       <WheelComponent
         key={key}
+        rerender={key}
         segments={pickableNames}
         segColors={["#34A24F"]}
         onFinished={(winner) => onFinished(winner)}
@@ -47,7 +51,8 @@ export default function About() {
         upDuration={100}
         downDuration={500}
       />
-      <p> first spin: {String(firstSpin)}</p>
+      <p>first spin: {String(firstSpin)}</p>
+      <p>key: {key}</p>
       <div className="flex flex-row gap-5">
         <div>
           Pickable names:
